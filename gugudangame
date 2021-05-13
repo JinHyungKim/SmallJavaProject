@@ -1,0 +1,49 @@
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Scanner;
+import java.util.Random;
+
+class Main {
+  public static void main(String[] args) {
+		int brk_game=1;
+		int my_score = 0;
+		final int GOAL_SCORE = 100; 
+		int val1, val2;
+		int result;
+		int lifeCount;
+
+		Scanner sc = new Scanner(System.in);
+		Random random = new Random();
+		System.out.println("구구단 게임!");
+
+		while (brk_game==1){
+			lifeCount=3;
+			while(my_score != GOAL_SCORE && lifeCount>0){
+ 		  	random.setSeed(System.currentTimeMillis());
+				System.out.println("현재점수:"+my_score+"점 // 목표점수:100점");
+				val1 = random.nextInt(7)+2;
+				val2 = random.nextInt(7)+2;
+
+				System.out.print(val1+"X"+val2+"=");
+
+				result = sc.nextInt();
+
+				if(val1*val2 == result){
+					my_score += 10;
+				}
+
+				else{
+					lifeCount--;
+					my_score-=10;
+					System.out.println("남은 목숨:"+lifeCount+"/3");
+				}
+			}
+			
+			System.out.println("게임 종료:0\t게임 계속:1");
+
+			brk_game = sc.nextInt();
+			if(brk_game==0)
+				break;
+		}
+  }
+}
